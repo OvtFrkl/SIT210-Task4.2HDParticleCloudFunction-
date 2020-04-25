@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<body>
+
+    <P>LED traffic light:<br><br>
+
+    <br><br>
+    <input type="radio" name="blue" value="blue" onclick="setBlue()" /> Blue
+    <br><br>
+    <input type="radio" name="white" value="white" onclick="setWhite()" /> White
+    <br><br>
+    <input type="radio" name="red" value="red" onclick="setRed()" /> Red
+
+
+
+    <script type="text/javascript">
+      var deviceID    = "e00fce68da0d3a3426d0c163";
+      var accessToken = "ab4c43dbdfabf60178a0593e29f93e7ad37ee220";
+      var setFunc = "led";
+
+      
+      function setBlue(value) {
+        var setColor = "blue"
+        changeLED(setColor);
+      }
+
+      function setWhite(value) {
+        var setColor = "white"
+        changeLED(setColor);
+      }
+
+      function setRed(value) {
+        var setColor = "red"
+        changeLED(setColor);
+      }
+
+      function changeLED(newColor) {
+	var requestURL = "https://api.spark.io/v1/devices/" +deviceID + "/" + setFunc + "/";
+        $.post( requestURL, { params: newColor, access_token: accessToken });
+      }
+
+    </script>
+</body>
+</html>
